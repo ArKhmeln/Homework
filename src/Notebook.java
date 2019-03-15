@@ -27,20 +27,28 @@ public class Notebook {
             notes = copy;
             System.out.println("Notebook's length has been reduced. Notebook's length is now: " + notes.length);
         }
-        if (notes[index] != null && index <= last_index - 1) {
-            String[] copy = new String[notes.length];
-            System.arraycopy(notes, 0, copy, 0, index);
-            System.arraycopy(notes, index + 1, copy, index, notes.length - index - 1);
-            notes = copy;
-            System.out.println("Note_" + index + " has been deleted");
-            last_index--;
+        if (index >= 0) {
+            if (notes[index] != null && index <= last_index - 1) {
+                String[] copy = new String[notes.length];
+                System.arraycopy(notes, 0, copy, 0, index);
+                System.arraycopy(notes, index + 1, copy, index, notes.length - index - 1);
+                notes = copy;
+                System.out.println("Note_" + index + " has been deleted");
+                last_index--;
+            }
+        }
+        else if (index < 0) {
+            System.out.println("Negative index was entered. Please, enter a positive index");
         }
         else {
             System.out.println("Index note is empty, nothing to delete!");
         }
     }
     public void changeNote(int index, String note) {
-        if (index > last_index - 1) {
+        if (index < 0) {
+            System.out.println("Negative index was entered. Please, enter a positive index");
+        }
+        else if (notes[index] == null) {
             System.out.println("Index note is empty, nothing to change!");
         }
         else {

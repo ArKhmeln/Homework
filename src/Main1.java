@@ -15,7 +15,6 @@ public class Main1 {
         input = new Note(scan.nextLine());
         note1.changeNote(0, input.getNote());
         note1.printNotes();
-
         for (int i = 0; i <= 100; i++) {
             input = new Note("testing note " + i);
             note1.addNote(input.getNote());
@@ -24,12 +23,15 @@ public class Main1 {
             note1.deleteNote(i);
         }
         note1.printNotes();
-
         note1.deleteNote(8);
         input = new Note("testing note new");
         note1.addNote(input.getNote());
+    //negative
         input = new Note("This note won't change");
-        note1.changeNote(3, input.getNote());
+        note1.changeNote(5, input.getNote());
+        note1.deleteNote(-1);
+        input = new Note("Nyet");
+        note1.changeNote(-5, input.getNote());
         note1.printNotes();
     }
 }
