@@ -10,7 +10,7 @@ public class Notebook {
             System.out.println("Notebook's length has been increased. Notebook's length is now: " + notes.length);
         }
         notes[last_index] = note;
-        System.out.println("The Note_" + last_index + " has been made");
+        System.out.println("Note_" + last_index + " has been made");
         last_index++;
     }
     public void printNotes() {
@@ -27,7 +27,7 @@ public class Notebook {
             notes = copy;
             System.out.println("Notebook's length has been reduced. Notebook's length is now: " + notes.length);
         }
-        if (notes[index] != null || index <= last_index - 1) {
+        if (notes[index] != null && index <= last_index - 1) {
             String[] copy = new String[notes.length];
             System.arraycopy(notes, 0, copy, 0, index);
             System.arraycopy(notes, index + 1, copy, index, notes.length - index - 1);
@@ -46,7 +46,7 @@ public class Notebook {
         else {
             String change = note;
             notes[index] = change;
-            System.out.println("The Note_" + index + " has been changed");
+            System.out.println("Note_" + index + " has been changed");
         }
     }
 }
