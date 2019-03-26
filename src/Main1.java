@@ -7,31 +7,25 @@ public class Main1 {
 /*
         Testing
  */
-        Note input = new Note(scan.nextLine());
-        note1.addNote(input.getNote());
+        note1.addNote(scan.nextLine());
         note1.deleteNote(0);
-        input = new Note(scan.nextLine());
-        note1.addNote(input.getNote());
-        input = new Note(scan.nextLine());
-        note1.changeNote(0, input.getNote());
+        note1.addNote(scan.nextLine());
+        note1.changeNote(0, "changed");
         note1.printNotes();
         for (int i = 0; i <= 100; i++) {
-            input = new Note("testing note " + i);
-            note1.addNote(input.getNote());
+            note1.addNote("testing note " + i);
         }
         for (int i = 99; i >= 0; i--) {
             note1.deleteNote(i);
         }
         note1.printNotes();
+    // Negative
         note1.deleteNote(8);
-        input = new Note("testing note new");
-        note1.addNote(input.getNote());
-    //negative
-        input = new Note("This note won't change");
-        note1.changeNote(5, input.getNote());
         note1.deleteNote(-1);
-        input = new Note("Nyet");
-        note1.changeNote(-5, input.getNote());
+        note1.addNote("new testing note");
+        note1.changeNote(3,"This note won't change");
+        note1.changeNote(1500, "out of bound");
+        note1.changeNote(-1, "Negative index");
         note1.printNotes();
     }
 }
