@@ -1,7 +1,10 @@
 import java.io.*;
 
 public class ByteIOStream {
-    public static void main (String[] args) {
-        FileInputStream input = new FileInputStream();
+    public void read() {
+        String path = MainIOB.path;
+        String out = ""
+        FileInputStream input = new FileInputStream(MainIOBpath);
+        FileOutputStream output = new FileOutputStream()
     }
 }
