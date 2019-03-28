@@ -14,13 +14,6 @@ public class Notebook {
         lastIndex++;
     }
 
-    private void increaseSize() {
-        Note [] copy = new Note [notes.length + CHANGE_SIZE];
-        System.arraycopy(notes, 0, copy, 0, lastIndex);
-        notes = copy;
-        System.out.println("Notebook's length has been increased. Notebook's length is now: " + notes.length);
-    }
-
     public void printNotes() {
         System.out.println("Your notes: ");
         for (int i = 0; i < lastIndex; i++) {
@@ -49,13 +42,6 @@ public class Notebook {
         }
     }
 
-    private void decreaseSize() {
-        Note [] copy = new Note [notes.length - CHANGE_SIZE];
-        System.arraycopy(notes, 0, copy, 0, lastIndex);
-        notes = copy;
-        System.out.println("Notebook's length has been reduced. Notebook's length is now: " + notes.length);
-    }
-
     public void changeNote(int index, String change) {
         if (index < 0) {
             System.out.println("Negative index was entered. Please, enter a positive index");
@@ -67,5 +53,19 @@ public class Notebook {
             notes[index] = new Note(change);
             System.out.println("Note_" + index + " has been changed");
         }
+    }
+
+    private void increaseSize() {
+        Note [] copy = new Note [notes.length + CHANGE_SIZE];
+        System.arraycopy(notes, 0, copy, 0, lastIndex);
+        notes = copy;
+        System.out.println("Notebook's length has been increased. Notebook's length is now: " + notes.length);
+    }
+
+    private void decreaseSize() {
+        Note [] copy = new Note [notes.length - CHANGE_SIZE];
+        System.arraycopy(notes, 0, copy, 0, lastIndex);
+        notes = copy;
+        System.out.println("Notebook's length has been reduced. Notebook's length is now: " + notes.length);
     }
 }
