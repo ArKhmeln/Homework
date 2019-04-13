@@ -13,8 +13,8 @@ public class CharIOStream {
             "synchronized", "this", "throw", "throws", "transient", "true",
             "try", "void", "volatile", "while"};
 
-    public static String readCharacterInput(String pathForRead) {
-        try (FileReader input = new FileReader(pathForRead)) {
+    public static String readCharacterInput(String pathToRead) {
+        try (FileReader input = new FileReader(pathToRead)) {
             StringBuilder sb = new StringBuilder();
             Scanner scan = new Scanner(input);
             while (scan.hasNext()) {

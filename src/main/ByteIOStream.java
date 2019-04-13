@@ -13,8 +13,8 @@ public class ByteIOStream  {
             "synchronized", "this", "throw", "throws", "transient", "true",
             "try", "void", "volatile", "while"};
 
-    public static String readВyteInput(String pathForRead) {
-        try (FileInputStream input = new FileInputStream(pathForRead)) {
+    public static String readВyteInput(String pathToRead) {
+        try (FileInputStream input = new FileInputStream(pathToRead)) {
             StringBuilder sb = new StringBuilder(0);
             int data;
             while ((data = input.read()) != -1) {
