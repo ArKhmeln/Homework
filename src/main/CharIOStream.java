@@ -13,35 +13,41 @@ public class CharIOStream {
             "synchronized", "this", "throw", "throws", "transient", "true",
             "try", "void", "volatile", "while"};
 
-    public static void readCharacterInput(String read) {
-        try (FileReader input = new FileReader(read)) {
+    public static String readCharacterInput(String pathForRead) {
+        try (FileReader input = new FileReader(pathForRead)) {
             StringBuilder sb = new StringBuilder();
             Scanner scan = new Scanner(input);
             while (scan.hasNext()) {
                 sb.append(scan.nextLine());
             }
             String result = sb.toString();
-            String [] re = result.split("[^a-z]+");
-            map = new LinkedHashMap<>();
-            for (int i = 0; i < re.length; i++) {
-                for (int j = 0; j < KEYWORDS.length; j++) {
-                    if (re[i].equals(KEYWORDS[j])) {
-                        if (!map.containsKey(re[i])) {
-                            map.put(re[i], 1);
-                        } else {
-                            int count = map.get(re[i]);
-                            map.put(re[i], count + 1);
-                        }
-                    }
-                }
-            }
+            return result;
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
+            return null;
         }
     }
 
-    public static void writeCharacterOutput(String write) {
-        try (FileWriter out = new FileWriter(write)) {
+    public static Map<String, Integer> analyzeCharStream(String result) {
+        String[] splitArray = result.split("[^a-z]+");
+        map = new LinkedHashMap<>();
+        for (int i = 0; i < splitArray.length; i++) {
+            for (int j = 0; j < KEYWORDS.length; j++) {
+                if (splitArray[i].equals(KEYWORDS[j])) {
+                    if (!map.containsKey(splitArray[i])) {
+                        map.put(splitArray[i], 1);
+                    } else {
+                        int count = map.get(splitArray[i]);
+                        map.put(splitArray[i], count + 1);
+                    }
+                }
+            }
+        }
+        return map;
+    }
+
+    public static void writeCharacterOutput(Map<String, Integer> map, String outPath) {
+        try (FileWriter out = new FileWriter(outPath)) {
             for (Map.Entry i: map.entrySet()) {
                 out.write(i.getKey() + ": ");
                 out.write(i.getValue() + "\r\n");

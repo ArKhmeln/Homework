@@ -13,35 +13,41 @@ public class ByteIOStream  {
             "synchronized", "this", "throw", "throws", "transient", "true",
             "try", "void", "volatile", "while"};
 
-    public static void readВyteInput(String read) {
-        try (FileInputStream input = new FileInputStream(read)) {
+    public static String readВyteInput(String pathForRead) {
+        try (FileInputStream input = new FileInputStream(pathForRead)) {
             StringBuilder sb = new StringBuilder(0);
             int data;
             while ((data = input.read()) != -1) {
                 sb.append(Character.toChars(data));
             }
             String result = sb.toString();
-            String [] re = result.split("[^a-z]+");
-            map = new LinkedHashMap<>();
-            for (int i = 0; i < re.length; i++) {
-                for (int j = 0; j < KEYWORDS.length; j++) {
-                    if (re[i].equals(KEYWORDS[j])) {
-                        if (!map.containsKey(re[i])) {
-                            map.put(re[i], 1);
-                        } else {
-                            int count = map.get(re[i]);
-                            map.put(re[i], count + 1);
-                        }
-                    }
-                }
-            }
+            return result;
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
+            return null;
         }
     }
 
-    public static void writeByteOutput(String write) {
-        try (FileOutputStream out = new FileOutputStream(write)) {
+    public static Map <String, Integer> analyzeByteInput(String result) {
+        String [] splittedArray = result.split("[^a-z]+");
+        map = new LinkedHashMap<>();
+        for (int i = 0; i < splittedArray.length; i++) {
+            for (int j = 0; j < KEYWORDS.length; j++) {
+                if (splittedArray[i].equals(KEYWORDS[j])) {
+                    if (!map.containsKey(splittedArray[i])) {
+                        map.put(splittedArray[i], 1);
+                    } else {
+                        int count = map.get(splittedArray[i]);
+                        map.put(splittedArray[i], count + 1);
+                    }
+                }
+            }
+        }
+        return map;
+    }
+
+    public static void writeByteOutput(Map <String, Integer> map, String outPath) {
+        try (FileOutputStream out = new FileOutputStream(outPath)) {
             for (Map.Entry i: map.entrySet()) {
                 out.write((i.getKey() + ": ").getBytes());
                 out.write((i.getValue() + "\r\n").getBytes());
