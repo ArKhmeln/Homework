@@ -9,8 +9,8 @@ import static org.junit.Assert.*;
 
 public class FilmsCollectionTest {
 
-    Set<Actor> act1 = new HashSet<>();
-    Set <Actor> act2 = new HashSet<>();
+    Set<Actor> act1 = new LinkedHashSet<>();
+    Set <Actor> act2 = new LinkedHashSet<>();
     Set <Film> fi = new LinkedHashSet<>();
     FilmsCollection col1 = new FilmsCollection(1, fi);
     Film f1 = new Film("AI Movie", act1);
