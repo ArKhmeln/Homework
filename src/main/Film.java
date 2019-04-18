@@ -15,9 +15,10 @@ public class Film implements Serializable {
     }
 
     public boolean removeActor(String name) {
-        for (Actor a: actors) {
-            if (a.getActorName().equals(name)) {
-                actors.remove(a);
+        for (Iterator <Actor> it = actors.iterator(); it.hasNext();) {
+            Actor act = it.next();
+            if (act.getActorName().equals(name)) {
+                it.remove();
                 return true;
             }
         }

@@ -31,22 +31,22 @@ public class FilmsCollection implements Serializable {
     }
 
     public Set<Actor> showActors(String filmName) {
-        int i = 1;
-        for (Film f : filmSet) {
-            if (f.getFilmTitle().equals(filmName)) {
-                return f.getActors();
-            } else if (i == filmSet.size()) {
+        int count = 1;
+        for (Film films : filmSet) {
+            if (films.getFilmTitle().equals(filmName)) {
+                return films.getActors();
+            } else if (count == filmSet.size()) {
                 System.out.println("There's no such film in this collection");
             }
-            i++;
+            count++;
         }
         return null;
     }
 
     public boolean addActorToFilm(String actorName, String filmName) {
-        for(Film f : filmSet) {
-            if (f.getFilmTitle().equals(filmName)) {
-                f.addActor(new Actor(actorName));
+        for(Film film : filmSet) {
+            if (film.getFilmTitle().equals(filmName)) {
+                film.addActor(new Actor(actorName));
                 return true;
             }
         }
@@ -55,11 +55,12 @@ public class FilmsCollection implements Serializable {
     }
 
     public boolean deleteActor(String actorName, String filmName) {
-        for (Film f : filmSet) {
-            if (f.getFilmTitle().equals(filmName)) {
-                for (Actor a : f.getActors()) {
-                    if (a.getActorName().equals(actorName)) {
-                        f.removeActor(actorName);
+        for (Film films : filmSet) {
+            if (films.getFilmTitle().equals(filmName)) {
+                for (Iterator <Actor> it = films.getActors().iterator(); it.hasNext();) {
+                    Actor act = it.next();
+                    if (act.getActorName().equals(actorName)) {
+                        it.remove();
                         return true;
                     }
                 }
